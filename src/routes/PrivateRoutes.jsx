@@ -18,9 +18,15 @@ const PrivateRoute = ({ children }) => {
     }, []);
 
 
-    if (loading) return <div>Loading...</div>;
+    if (loading) {
+        return (
+            <div id="loader-container">
+              <p> <span className="loader"></span> Loading...</p>  
+            </div>
+        )
+    }
 
-    if (!user) return <Navigate to="/signin" replace />; 
+    if (!user) return <Navigate to="/signin" replace />;
 
     return children;
 };

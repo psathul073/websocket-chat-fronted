@@ -50,6 +50,17 @@ body {
     animation: rotation 1s linear infinite;
 }
 
+#loader-container{
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    align-content: center;
+    text-align: center;
+    color: var(--primary-text);
+    background-color: var(--primary-bg);
+}
+
 // Key frames.
 @keyframes rotation {
     0% {
