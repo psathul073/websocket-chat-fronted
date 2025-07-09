@@ -13,7 +13,7 @@ const Content = ({ user, socket, room, setRoom, err, setErr, privateRoom, setPri
 
     // Handle room create.
     const handleCreate = () => {
-        createRoom(socket, user?.uid, createInput, createPwd);
+        createRoom(socket, user.uid, createInput, createPwd);
         setCreateInput("");
         setCreatePwd("");
     };

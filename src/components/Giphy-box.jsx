@@ -24,7 +24,7 @@ const GiphyBox = ({ gifSelect, setShowGifPicker }) => {
     // Hide gif box when clicked on outside..
     useEffect(() => {
         const handleClickOnOutside = (e) => {
-            console.log(e.target.value);
+            // console.log(e.target.value);
             
             if (gifBoxRef.current && !gifBoxRef.current.contains(e.target)) {
                 setShowGifPicker(false);
