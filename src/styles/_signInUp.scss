@@ -1,0 +1,134 @@
+@mixin flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#signup-container,
+#signin-container {
+    height: 100vh;
+    width: 100vw;
+    font-family: "Poppins", sans-serif;
+    background-color: var(--primary-bg);
+    padding: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+    @include flex;
+
+    .signup-model,
+    .signin-model {
+        @include flex;
+        width: 90%;
+        max-width: 350px;
+        padding: 22px;
+        border-radius: 16px;
+        background-color: var(--secondary-bg);
+
+        h1 {
+            color: var(--primary-text);
+            font-size: clamp(1.15em, 2vw + 0.5em, 1.3em);
+            padding: 20px 0;
+            margin-bottom: 20px
+        }
+
+        form {
+            width: 100%;
+
+            .signup-input,
+            .signin-input {
+                @include flex;
+                width: 100%;
+                position: relative;
+                padding: 10px 0;
+
+                label {
+                    position: absolute;
+                    top: 0;
+                    left: 10px;
+                    align-self: self-start;
+                    font-size: small;
+                    background-color: var(--secondary-bg);
+                    color: var(--secondary-text);
+                    padding: 0 2px;
+                }
+
+                input {
+                    width: 100%;
+                    padding: 10px;
+                    border-radius: 8px;
+                    background-color: transparent;
+                    color: var(--primary-text);
+                    border: 0.5px solid #52525b;
+                }
+
+                .eye {
+                    position: absolute;
+                    width: fit-content;
+                    height: fit-content;
+                    border: none;
+                    align-self: flex-end;
+                    background-color: transparent;
+                    z-index: 10;
+                    color: var(--secondary-text);
+                }
+
+            }
+
+            .forgot-pwd {
+                width: 100%;
+                font-size: small;
+                align-self: flex-end;
+                text-align: end;
+                cursor: pointer;
+
+                &:hover {
+                    color: var(--primary-text);
+                }
+            }
+
+            #error-msg {
+                font-family: monospace;
+                color: red;
+                padding: 8px 0;
+                font-size: 1.1em;
+            }
+
+
+        }
+
+        button {
+            @include flex;
+            flex-direction: row;
+            gap: 10px;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 1.05em;
+            border: none;
+            border-radius: 8px;
+            transition: scale 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+
+            &:hover {
+                scale: 0.98;
+            }
+        }
+
+        #register {
+            color: white;
+            background-color: #22c55e;
+        }
+
+        h2,
+        p {
+            color: #9ca3af;
+            font-size: 0.8em;
+            font-weight: 400;
+
+            span {
+                cursor: pointer;
+                color: var(--primary-text);
+            }
+        }
+    }
+}

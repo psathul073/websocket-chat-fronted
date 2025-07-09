@@ -1,0 +1,199 @@
+@mixin flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+// join and create model style.
+@mixin room {
+
+    .create-room,
+    .join-room {
+        position: relative;
+        width: 100%;
+        max-width: 500px;
+        @include flex();
+        padding: 20px;
+        border-radius: 24px;
+        background-color: var(--secondary-bg);
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+        animation: popIn 0.3s ease-out;
+
+        h3 {
+            width: 100%;
+            @include flex();
+            margin-bottom: 10px;
+            flex-direction: row;
+            justify-content: space-between;
+            color: #2563eb;
+
+            .close-btn {
+                display: block;
+                height: 35px;
+                width: 35px;
+                border: none;
+                font-size: 1.1em;
+                border-radius: 100%;
+                color: var(--primary-text);
+                background-color: transparent;
+                transition: 0.3s;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #fecaca;
+                    color: #ef4444;
+                }
+            }
+        }
+
+        .err-text {
+            font-family: monospace;
+            font-size: 1em;
+            color: #dc2626;
+        }
+
+        .room-inputs {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            color: var(--primary-text);
+
+            label {
+                position: absolute;
+                top: 0px;
+                left: 20px;
+                padding: 2px 4px;
+                border-radius: 4px;
+                font-size: 0.8em;
+                background-color: var(--secondary-bg);
+
+                span {
+                    margin-left: 2px;
+                    color: red;
+                }
+            }
+
+            input {
+                width: 100%;
+                padding: 10px;
+                margin: 10px 0;
+                border: none;
+                border-radius: 6px;
+                font-size: 1.3em;
+                font-family: monospace;
+                border: 0.5px solid #52525b;
+                color: var(--primary-text);
+                background-color: var(--secondary-bg);
+
+                &:focus {
+                    outline-color: #3b82f6;
+                }
+            }
+        }
+
+        .create-btn,
+        .join-btn {
+            padding: 12px;
+            border: none;
+            border-radius: 24px;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .create-btn {
+            color: white;
+            background-color: #2563eb;
+
+            &:hover {
+                background-color: #93c5fd;
+            }
+        }
+
+        .join-btn {
+            color: white;
+            background-color: #22c55e;
+
+            &:hover {
+                background-color: #86efac;
+            }
+        }
+    }
+
+    .join-room {
+        h3 {
+            color: #22c55e;
+        }
+    }
+
+}
+
+#content-container {
+    height: 100%;
+    width: 100%;
+    @include flex();
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 15px;
+    background-color: var(--primary-bg);
+
+    .person-img {
+        width: 100%;
+        text-align: center;
+        align-content: center;
+        padding: 10px;
+        background-color: transparent;
+
+        img {
+            width: 100%;
+            max-width: 400px;
+            object-position: center;
+            object-fit: contain;
+        }
+
+        h1 {
+            color: #2563eb;
+            margin: 20px 0;
+        }
+    }
+
+    .jc-box {
+        height: 100%;
+        width: 100%;
+        @include flex();
+        gap: 30px;
+        padding: 10px;
+        // Join and create.
+        @include room();
+    }
+}
+
+// Join and create room popup.
+.room-popup {
+    position: fixed;
+    width: 100%;
+    min-height: 100%;
+    background-color: #52525b80;
+    backdrop-filter: blur(5px);
+    @include flex();
+    @include room();
+}
+
+// Media queries.
+@media (width < 80rem) {
+    #content-container {
+        flex-direction: column;
+
+        .person-img {
+            margin-top: 30px;
+
+            img {
+                width: 75%;
+            }
+
+        }
+    }
+}

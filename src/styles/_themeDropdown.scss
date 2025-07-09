@@ -1,0 +1,61 @@
+@mixin flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+#theme-container {
+    position: relative;
+    height: fit-content;
+
+    .toggle-btn {
+        // width: 100px;
+        @include flex();
+        justify-content: flex-end;
+        font-size: 1em;
+        padding: 6px 12px;
+        border-radius: 24px;
+        color: #3b82f6;
+        background-color: #bfdbfe;
+        border: none;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #93c5fd;
+        }
+
+    }
+
+    .options {
+        position: absolute;
+        top: 35px;
+        right: 0;
+        width: 100px;
+        border-radius: 12px;
+        padding: 4px;
+        color: var(--primary-text);
+        background-color: var(--primary-bg);
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+        animation: popIn 0.3s ease-out;
+
+        .option {
+            @include flex();
+            justify-content: left;
+            padding: 4px 8px;
+            border-radius: 6px;
+            margin: 5px 0;
+            transition: 0.3s;
+
+            &:not(:last-child) {
+                border-bottom: 0.5px solid rgba(156, 163, 176, 0.2);
+            }
+
+            &:hover {
+                cursor: pointer;
+                color: #3b82f6;
+                background-color: var(--secondary-bg);
+            }
+        }
+    }
+}

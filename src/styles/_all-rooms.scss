@@ -1,0 +1,180 @@
+@mixin flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+}
+
+#rooms-container {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    @include flex();
+    flex-direction: column;
+    padding: 10px;
+    backdrop-filter: blur(5px);
+    background-color: rgba(128, 128, 128, 0.507);
+
+    .allRooms-model {
+        width: 600px;
+        max-width: 100%;
+        padding: 15px;
+        border-radius: 24px;
+        background-color: var(--primary-bg);
+        color: var(--primary-text);
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+        animation: popIn 0.3s ease-out;
+
+        .title {
+            width: 100%;
+            @include flex();
+            font-size: 1em;
+            font-weight: 500;
+            padding-bottom: 10px;
+            border-bottom: 0.5px solid rgba(156, 163, 176, 0.3);
+
+            .close-btn {
+                display: block;
+                height: 24px;
+                width: 24px;
+                border: none;
+                font-size: 1.5em;
+                border-radius: 100%;
+                color: var(--primary-text);
+                background-color: transparent;
+                transition: 0.3s;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: var(--primary-bg);
+                    color: red;
+                }
+            }
+
+        }
+
+        .search-box {
+            @include flex();
+            color: var(--primary-text);
+            margin: 10px 0;
+            gap: 0;
+
+            input {
+                width: 100%;
+                padding: 10px;
+                border: none;
+                border-radius: 6px 0px 0px 6px;
+                background-color: var(--secondary-bg);
+                color: var(--primary-text);
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            .search-btn {
+                height: 36px;
+                width: 36px;
+                font-size: 1.4em;
+                padding-top: 4px;
+                padding-right: 4px;
+                border: none;
+                border-radius: 0px 6px 6px 0px;
+                color: var(--primary-text);
+                background-color: var(--secondary-bg);
+                cursor: pointer;
+
+                &:hover {
+                    color: #238636;
+                }
+            }
+        }
+
+        .rooms-list {
+            // adjustable needed...
+            width: 100%;
+
+            .room {
+                width: 100%;
+                @include flex();
+                margin: 15px 0;
+                padding: 8px;
+                border-radius: 6px;
+                color: var(--primary-text);
+                background-color: var(--secondary-bg);
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+
+                h3 {
+                    @include flex();
+                    font-size: 0.9em;
+                    font-weight: 400;
+
+                    .icon {
+                        color: goldenrod;
+                    }
+                }
+
+                .room-btns {
+                    @include flex();
+                    gap: 12px;
+
+                    .join-btn,
+                    .del-btn {
+                        position: relative;
+                        display: inline-block;
+                        border: none;
+                        background-color: transparent;
+                        cursor: pointer;
+                        transition: 0.3s;
+
+                        .icon {
+                            margin-top: 2px;
+                            font-size: 1.7em;
+                        }
+
+                        .tooltip-text {
+                            visibility: hidden;
+                            position: absolute;
+                            bottom: 100%;
+                            left: 50%;
+                            width: 90px;
+                            margin-bottom: 10px;
+                            margin-left: -50px;
+                            text-align: center;
+                            border-radius: 6px;
+                            padding: 5px 0;
+                            z-index: 1;
+                            color: var(--primary-text);
+                            background-color: var(--secondary-bg);
+                        }
+
+                        &:hover {
+                            .tooltip-text {
+                                visibility: visible;
+                            }
+                        }
+                    }
+
+                    .del-btn {
+                        color: #f87171;
+
+                        &:hover {
+                            color: #dc2626;
+                        }
+                    }
+
+                    .join-btn {
+                        color: #22c55e;
+
+                        &:hover {
+                            color: #00ff5e;
+                        }
+                    }
+                }
+            }
+
+        }
+
+    }
+}
