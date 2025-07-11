@@ -28,6 +28,7 @@ const Home = () => {
   const [error, setError] = useState("");
   const [isDisable, setIsDisable] = useState(false)
   const [isConfirm, setIsConfirm] = useState(false);
+  const [isConnected, setIsConnected] = useState(null);
 
   const navigate = useNavigate();
 
@@ -86,10 +87,10 @@ const Home = () => {
     const WS_URL = import.meta.env.VITE_WS_URL;
     const ws = new WebSocket(WS_URL); // Connect to backend server.
 
-    ws.onopen = () => console.log("WebSocket connected");
+    ws.onopen = () => { setIsConnected(true); setIsDisable(false); console.log("WebSocket connected"); }
 
     ws.onmessage = (ev) => {
-      
+
       // console.log('Raw message:', ev.data);
 
       const data = JSON.parse(ev.data);
@@ -133,7 +134,7 @@ const Home = () => {
 
     };
 
-    ws.onclose = () => console.log("❌ Disconnected from server");
+    ws.onclose = () => { setIsConnected(false); setIsDisable(true); console.log("❌ Disconnected from server"); }
 
     setSocket(ws);
 
@@ -153,7 +154,7 @@ const Home = () => {
       </button>}
 
       {/* Avatar & profile*/}
-      <button className="avatar" onClick={() => setShowProfilePop(true)}>
+      <button className="avatar" style={{borderColor: isConnected ? 'green' : 'red'}} onClick={() => setShowProfilePop(true)}>
         <img src={userData?.avatar ? userData.avatar : "/avatar.webp"} alt="avatar" loading="lazy" />
       </button>
 
@@ -188,7 +189,7 @@ const Home = () => {
       </aside>
 
       {/* Content */}
-      <Content user={userData} socket={socket} room={room} setRoom={setRoom} err={error} setErr={setError} privateRoom={privateRoom} setPrivateRoom={setPrivateRoom} messages={messages} setMessages={setMessages} isDisable={isDisable} setIsDisable={setIsDisable} />
+      <Content user={userData} socket={socket} room={room} setRoom={setRoom} err={error} setErr={setError} privateRoom={privateRoom} setPrivateRoom={setPrivateRoom} messages={messages} setMessages={setMessages} isDisable={isDisable} setIsDisable={setIsDisable} connection={isConnected} />
 
       {/* Profile popup model */}
       {showProfilePop && <ProfilePopup setShowProfilePop={setShowProfilePop} setShowProfileUpdate={setShowProfileUpdate} setShowSettings={setShowSettings} userData={userData} signOut={handleSignOut} />}
@@ -200,12 +201,13 @@ const Home = () => {
       {showSettings && <Settings setShowSettings={setShowSettings} signOut={handleSignOut} setIsConfirm={setIsConfirm} />}
 
       {/* Show all rooms model */}
-      {showAllRooms && <AllRooms setShowAllRooms={setShowAllRooms} rooms={rooms} setRooms={setRooms} uid={userData?.uid} socket={socket} setPrivateRoom={setPrivateRoom} setRoom={setRoom} />}
+      {showAllRooms && <AllRooms setShowAllRooms={setShowAllRooms} rooms={rooms} setRooms={setRooms} uid={userData?.uid} socket={socket} setPrivateRoom={setPrivateRoom} setRoom={setRoom} connection={isConnected} />}
 
       {/* Confirm model */}
       {isConfirm && <ConfirmModel
         title={'Account Removal'}
         msg={'Are you sure you want to delete your account? This will permanently remove your account and all data.'}
+        type={'Account'}
         cancel={() => setIsConfirm(false)}
         confirm={() => { deleteAccount(socket, userData?.uid); setIsDisable(true) }}
         loading={isDisable}

@@ -27,8 +27,8 @@
 
         .icon {
             font-size: 1.5em;
-            height: 40px;
-            width: 40px;
+            height: 44px;
+            width: 44px;
             padding: 6px;
             border-radius: 100%;
             background-color: var(--secondary-bg);
@@ -55,10 +55,11 @@
         position: absolute;
         right: 0;
         top: 0;
-        height: 40px;
-        width: 40px;
+        height: 44px;
+        width: 44px;
         margin: 15px;
-        border: 0.5px solid #9ca3af83;
+        padding: 1.5px;
+        border: 3px solid ;
         border-radius: 100%;
         background-color: var(--secondary-bg);
         box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;

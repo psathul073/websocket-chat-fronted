@@ -49,20 +49,26 @@
             .chat-profile {
                 @include flex();
                 gap: 10px;
+                padding-left: 4px;
                 color: var(--primary-text);
 
                 img {
                     display: block;
                     width: 44px;
                     height: 44px;
-                    outline: 2px solid var(--primary-bg);
-                    padding: 1px;
+                    outline: 3px solid;
+                    padding: 1.5px;
                     border-radius: 50%;
                 }
 
                 h3 {
                     font-size: 1em;
                     font-weight: 500;
+
+                    p {
+                        font-weight: 200;
+                        font-size: xx-small;
+                    }
                 }
             }
 

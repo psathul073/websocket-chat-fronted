@@ -3,7 +3,7 @@ import PasswordModel from "./Password-model"
 import { useState } from "react"
 import { createRoom, joinRoom } from "../utils/room-manage"
 
-const Content = ({ user, socket, room, setRoom, err, setErr, privateRoom, setPrivateRoom, messages, setMessages, isDisable, setIsDisable }) => {
+const Content = ({ user, socket, room, setRoom, err, setErr, privateRoom, setPrivateRoom, messages, setMessages, isDisable, setIsDisable, connection }) => {
 
     const [createInput, setCreateInput] = useState("");
     const [createPwd, setCreatePwd] = useState("");
@@ -11,17 +11,22 @@ const Content = ({ user, socket, room, setRoom, err, setErr, privateRoom, setPri
     const [joinPwd, setJoinPwd] = useState("");
 
 
+    
     // Handle room create.
     const handleCreate = () => {
-        createRoom(socket, user.uid, createInput, createPwd);
-        setCreateInput("");
-        setCreatePwd("");
+        if (connection) {
+            createRoom(socket, user.uid, createInput, createPwd);
+            setCreateInput("");
+            setCreatePwd("");
+        }
     };
     // Handle room join.
     const handleJoin = () => {
-        joinRoom(socket, joinInput, joinPwd);
-        setJoinInput("");
-        setJoinPwd("")
+        if (connection) {
+            joinRoom(socket, joinInput, joinPwd);
+            setJoinInput("");
+            setJoinPwd("")
+        }
     };
 
     // Room close.
@@ -77,7 +82,7 @@ const Content = ({ user, socket, room, setRoom, err, setErr, privateRoom, setPri
                 </div>}
 
             {/* chat container */}
-            {room && <ChatBox user={user} socket={socket} room={room} messages={messages} leaveRoom={leaveRoom} isDisable={isDisable} setIsDisable={setIsDisable} />}
+            {room && <ChatBox user={user} socket={socket} room={room} messages={messages} leaveRoom={leaveRoom} isDisable={isDisable} setIsDisable={setIsDisable} connection={connection} />}
 
             {privateRoom && <PasswordModel socket={socket} roomName={privateRoom} setRoomName={setPrivateRoom} err={err} setErr={setErr} />}
 

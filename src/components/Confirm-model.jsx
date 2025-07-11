@@ -1,5 +1,5 @@
 
-const ConfirmModel = ({ title, msg, loading, confirm, cancel }) => {
+const ConfirmModel = ({ title, msg, loading, confirm, cancel ,type }) => {
 
 
     return (
@@ -9,7 +9,7 @@ const ConfirmModel = ({ title, msg, loading, confirm, cancel }) => {
                 <p>{msg}</p>
                 <div className="model-actions">
                     <button className="cnl-btn" onClick={cancel}>Cancel</button>
-                    <button disabled={loading} className="del-btn" onClick={confirm}>Delete {'Account'} {loading && <span className="loader"></span>}</button>
+                    <button disabled={loading} className="del-btn" onClick={confirm}>Delete {type} {loading && <span className="loader"></span>}</button>
                 </div>
             </div>
         </div>

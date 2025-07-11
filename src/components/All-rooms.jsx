@@ -10,12 +10,13 @@ const AllRooms = ({
   socket,
   setPrivateRoom,
   setRoom,
+  connection
 }) => {
   const [roomName, setRoomName] = useState("");
   const [isConfirm, setIsConfirm] = useState(false);
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  
+
 
   // Room search. 👁️
   const filteredRooms = rooms?.filter(room =>
@@ -23,13 +24,16 @@ const AllRooms = ({
   );
 
   const roomDelete = () => {
-    setLoading(true);
-    setTimeout(() => {
-      deleteRoom(socket, roomName, uid);
-      setRoom("");
-      setLoading(false);
-      setIsConfirm(false);
-    }, 2000);
+    if (connection) {
+      setLoading(true);
+      setTimeout(() => {
+        deleteRoom(socket, roomName, uid);
+        setRoom("");
+        setLoading(false);
+        setIsConfirm(false);
+      }, 2000);
+    }
+
   };
 
   const cancelDelete = () => {
@@ -68,7 +72,7 @@ const AllRooms = ({
           <ul className="rooms-list">
             {filteredRooms.length > 0 ?
               filteredRooms?.map((room) => (
-                
+
                 <li className="room" key={room?.name}>
                   <h3>
                     {room.name}
@@ -91,7 +95,7 @@ const AllRooms = ({
                       <Icon name={"joinChat"} className={"icon"} />
                       <span className="tooltip-text">Join Room</span>
                     </button>
-                   
+
 
                     {uid === room.createdBy && (
                       <button
@@ -120,6 +124,7 @@ const AllRooms = ({
         <ConfirmModel
           title={"Delete room"}
           msg={`Are you sure you want to delete ${roomName}?`}
+          type={'Room'}
           loading={loading}
           confirm={roomDelete}
           cancel={cancelDelete}
