@@ -153,7 +153,7 @@ const ChatBox = ({ user, socket, room, messages, leaveRoom, isDisable, setIsDisa
             <div id="chat-room">
                 <header className='chat-head'>
                     <div className='chat-profile'>
-                        <img src={user?.avatar ? user.avatar : "/avatar.webp"} alt="avatar" style={{ outlineColor: connection ? 'green' : 'red'}} />
+                        <img src={user?.avatar ? user.avatar : "/avatar.webp"} alt="avatar" style={{ outlineColor: connection ? '#15803d' : '#be123c'}} />
                         <h3>{user?.username} <br /> <p>{connection ? 'Online' : 'Offline'}</p></h3>
                         
                     </div>

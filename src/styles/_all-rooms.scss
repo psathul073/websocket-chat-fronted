@@ -49,7 +49,7 @@
 
                 &:hover {
                     background-color: var(--primary-bg);
-                    color: red;
+                    color: #be123c;
                 }
             }
 
@@ -112,7 +112,7 @@
                     font-weight: 400;
 
                     .icon {
-                        color: goldenrod;
+                        color: #ca8a04;
                     }
                 }
 
@@ -158,18 +158,18 @@
                     }
 
                     .del-btn {
-                        color: #f87171;
+                        color: #be123c;
 
                         &:hover {
-                            color: #dc2626;
+                            color: #e11d48;
                         }
                     }
 
                     .join-btn {
-                        color: #22c55e;
+                        color: #15803d;
 
                         &:hover {
-                            color: #00ff5e;
+                            color: #16a34a;
                         }
                     }
                 }

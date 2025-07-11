@@ -66,8 +66,8 @@
                     font-weight: 500;
 
                     p {
-                        font-weight: 200;
-                        font-size: xx-small;
+                        font-weight: 300;
+                        font-size: x-small;
                     }
                 }
             }
@@ -83,7 +83,7 @@
                 cursor: pointer;
 
                 &:hover {
-                    color: #ef4444;
+                    color: #be123c;
                 }
             }
         }
@@ -308,7 +308,7 @@
                     }
 
                     &:hover {
-                        color: #3b82f6;
+                        color: #1d4ed8;
                     }
                 }
 
@@ -318,7 +318,7 @@
                     margin-left: 4px;
                     border-radius: 50%;
                     color: white;
-                    background-color: #3b82f6;
+                    background-color: #1d4ed8;
 
                     &:hover {
                         color: white;

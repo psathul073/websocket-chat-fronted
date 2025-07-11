@@ -154,7 +154,7 @@ const Home = () => {
       </button>}
 
       {/* Avatar & profile*/}
-      <button className="avatar" style={{borderColor: isConnected ? 'green' : 'red'}} onClick={() => setShowProfilePop(true)}>
+      <button className="avatar" style={{ borderColor: isConnected ? '#15803d' : '#be123c'}} onClick={() => setShowProfilePop(true)}>
         <img src={userData?.avatar ? userData.avatar : "/avatar.webp"} alt="avatar" loading="lazy" />
       </button>
 

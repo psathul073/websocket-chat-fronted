@@ -50,7 +50,7 @@
             cursor: pointer;
 
             &:hover {
-                color: red;
+                color: #be123c;
                 background-color: var(--primary-bg);
             }
         }
@@ -98,7 +98,7 @@
 
                 &:hover>.camera-btn {
                     cursor: pointer;
-                    color: #22c55e;
+                    color: #15803d;
                 }
             }
 
@@ -112,7 +112,7 @@
                 background-color: var(--primary-bg);
 
                 &:focus {
-                    outline-color: #3b82f6;
+                    outline-color: #1d4ed8;
                 }
             }
 
@@ -124,12 +124,12 @@
                 border: none;
                 align-content: center;
                 margin: 5px 0;
-                color: whitesmoke;
-                background-color: #238636;
+                color: white;
+                background-color: #15803d;
                 cursor: pointer;
 
                 &:hover {
-                    background-color: #238637df;
+                    background-color: #16a34a;
                 }
             }
 

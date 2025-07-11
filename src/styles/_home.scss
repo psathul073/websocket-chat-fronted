@@ -112,7 +112,7 @@
                 cursor: pointer;
 
                 &:hover {
-                    color: red;
+                    color: #be123c;
                 }
             }
         }
@@ -146,13 +146,16 @@
 
                     // background-color: rgb(255, 153, 0);
                     &:hover {
-                        color: #238636;
+                        color: #15803d;
                         background-color: #9ca3af4d;
                     }
                 }
 
                 .lc-icon {
                     right: 50px;
+                    &:hover{
+                        color: #be123c;
+                    }
                 }
             }
         }
@@ -166,13 +169,13 @@
             font-size: 1em;
             border: none;
             border-radius: 6px;
-            background-color: #238636;
+            background-color: #15803d;
             color: #ffffff;
             transition: 0.3s;
 
             &:hover {
                 cursor: pointer;
-                background-color: #238637d5;
+                background-color: #16a34a;
             }
         }
 

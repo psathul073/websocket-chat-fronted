@@ -27,7 +27,7 @@
             margin-bottom: 10px;
             flex-direction: row;
             justify-content: space-between;
-            color: #2563eb;
+            color: #1d4ed8;
 
             .close-btn {
                 display: block;
@@ -43,7 +43,7 @@
 
                 &:hover {
                     background-color: #fecaca;
-                    color: #ef4444;
+                    color: #be123c;
                 }
             }
         }
@@ -88,7 +88,7 @@
                 background-color: var(--secondary-bg);
 
                 &:focus {
-                    outline-color: #3b82f6;
+                    outline-color: #374151;
                 }
             }
         }
@@ -106,26 +106,27 @@
 
         .create-btn {
             color: white;
-            background-color: #2563eb;
+            background-color: #1d4ed8;
+            
 
             &:hover {
-                background-color: #93c5fd;
+                background-color: #2563eb;
             }
         }
 
         .join-btn {
             color: white;
-            background-color: #22c55e;
+            background-color: #15803d;
 
             &:hover {
-                background-color: #86efac;
+                background-color: #16a34a;
             }
         }
     }
 
     .join-room {
         h3 {
-            color: #22c55e;
+            color: #15803d;
         }
     }
 
@@ -155,7 +156,7 @@
         }
 
         h1 {
-            color: #2563eb;
+            color: #1d4ed8;
             margin: 20px 0;
         }
     }
