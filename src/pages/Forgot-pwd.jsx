@@ -11,6 +11,7 @@ const ForgotPwd = () => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
+    // For reset password.
     const resetPassword = async ({ email }) => {
         setLoading(true);
         try {
@@ -28,9 +29,11 @@ const ForgotPwd = () => {
 
     return (
         <section id='forgot-container'>
+
+            {/* Forgot model */}
             <div className='forgot-model'>
                 <h1>Reset your password !</h1>
-
+                {/* Input form */}
                 <form onSubmit={handleSubmit(resetPassword)}>
                     <div className='forgot-input'>
                         <label htmlFor="email">Email</label>
@@ -41,9 +44,9 @@ const ForgotPwd = () => {
                     <button disabled={loading} type="submit" id="send">{loading ? <span className="loader"></span> : 'Send Reset Email'}</button>
                 </form>
 
-
                 <p onClick={() => navigate('/signin')} >Log In</p>
             </div>
+
         </section>
     )
 }

@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router";
 import Icon from "../icons/Icon";
-import {  useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { auth,db,googleProvider } from "../config/firebase";
+import { auth, db, googleProvider } from "../config/firebase";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 
@@ -15,7 +15,7 @@ const Signin = () => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-
+    // Signin user.
     const signInUser = async (formData) => {
         setLoading(true);
         const { email, password } = formData;
@@ -47,6 +47,7 @@ const Signin = () => {
         };
     };
 
+    // Google signin.
     const handleGoogleSignIn = async () => {
         setLoading(true);
         //   await  signInWithRedirect(auth, googleProvider);
@@ -72,9 +73,11 @@ const Signin = () => {
 
     return (
         <section id='signup-container'>
+
             <div className='signin-model'>
                 <h1>Hello, welcome Back 👻</h1>
 
+                {/* Form input */}
                 <form onSubmit={handleSubmit(signInUser)}>
                     <div className='signin-input'>
                         <label htmlFor="email">Email</label>
@@ -89,10 +92,12 @@ const Signin = () => {
                     <p id="error-msg">{errors?.password?.message || message}</p>
                     <button disabled={loading} type="submit" id="register"> {loading ? <span className="loader"></span> : 'Login'} </button>
                 </form>
+
                 <h2>or</h2>
                 <button disabled={loading} id="google" onClick={handleGoogleSignIn}><Icon name={'google'} /> Continue with Google</button>
                 <p>Don`t have an account? <span onClick={() => navigate('/signup')}>Sign up</span></p>
             </div>
+
         </section>
     );
 }

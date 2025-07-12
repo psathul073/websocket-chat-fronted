@@ -15,7 +15,7 @@ const Signup = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-
+  // Signup user.
   const signUpUser = async (forData) => {
     setLoading(true);
     const { username, email, password } = forData;
@@ -53,14 +53,15 @@ const Signup = () => {
 
   };
 
+  // Google sign up.
   const handleGoogleSignUp = async () => {
     setLoading(true);
     try {
       const result = await signInWithPopup(auth, googleProvider);
 
       const user = result.user;
-      if(!user) return;
-      
+      if (!user) return;
+
       // Set user.
       await setDoc(doc(db, "users", user.uid), {
         username: user.displayName || "",
@@ -79,8 +80,11 @@ const Signup = () => {
 
   return (
     <section id='signup-container'>
+
       <div className='signup-model'>
         <h1>Welcome to Simple Chat</h1>
+
+        {/* Input form */}
         <form onSubmit={handleSubmit(signUpUser)}>
           <div className='signup-input'>
             <label htmlFor="username">Username</label>
@@ -98,10 +102,12 @@ const Signup = () => {
           <p id="error-msg">{errors?.password?.message || message}</p>
           <button disabled={loading} type="submit" id="register">{loading ? <span className="loader"></span> : 'Register'}</button>
         </form>
+
         <h2>or</h2>
         <button disabled={loading} id="google" onClick={() => handleGoogleSignUp()}><Icon name={'google'} /> Sign up with Google</button>
         <p>Already have an account? <span onClick={() => navigate('/signin')}>Sign in</span></p>
       </div>
+      
     </section>
   )
 }

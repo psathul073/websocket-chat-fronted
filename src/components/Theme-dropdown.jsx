@@ -42,10 +42,12 @@ const ThemeDropdown = () => {
 
     return (
         <div id='theme-container' ref={dropdownRef}>
+            
             <button className='toggle-btn' onClick={() => setIsOpen(!isOpen)}>
                 <Icon name={selected} />
                 <span>{options.find((opt) => opt.value === selected)?.label}</span>
             </button>
+         
             {isOpen &&
                 <ul className='options'>
                     {

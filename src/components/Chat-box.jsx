@@ -10,7 +10,7 @@ import SlicedText from './Sliced-text'
 
 
 const ChatBox = ({ user, socket, room, messages, leaveRoom, isDisable, setIsDisable, connection }) => {
-    
+
     const [text, setText] = useState('');
     const [showGifPicker, setShowGifPicker] = useState(false);
     const [replyTo, setReplyTo] = useState(null);
@@ -19,7 +19,7 @@ const ChatBox = ({ user, socket, room, messages, leaveRoom, isDisable, setIsDisa
     const [scaleImage, setScaleImage] = useState(null);
     const textareaRef = useRef(null);
     const scrollRef = useRef(null);
-    
+
 
     // For send texts.
     const sendMessage = () => {
@@ -150,16 +150,20 @@ const ChatBox = ({ user, socket, room, messages, leaveRoom, isDisable, setIsDisa
     return (
         <div className='chat-backdrop'>
 
+            {/* Chat box container */}
             <div id="chat-room">
+
+                {/* Head section */}
                 <header className='chat-head'>
                     <div className='chat-profile'>
-                        <img src={user?.avatar ? user.avatar : "/avatar.webp"} alt="avatar" style={{ outlineColor: connection ? '#15803d' : '#be123c'}} />
+                        <img src={user?.avatar ? user.avatar : "/avatar.webp"} alt="avatar" style={{ outlineColor: connection ? '#15803d' : '#be123c' }} />
                         <h3>{user?.username} <br /> <p>{connection ? 'Online' : 'Offline'}</p></h3>
-                        
+
                     </div>
                     <button className='exit-btn' onClick={leaveRoom}><Icon name={'exit'} /></button>
                 </header>
 
+                {/* Messages section */}
                 <div className='messages'>
                     {
                         messages?.map((msg) => (
@@ -188,6 +192,7 @@ const ChatBox = ({ user, socket, room, messages, leaveRoom, isDisable, setIsDisa
                     <div ref={scrollRef}></div>
                 </div>
 
+                {/* Input section */}
                 <div className='input-container'>
 
                     {replyTo && (
@@ -202,6 +207,7 @@ const ChatBox = ({ user, socket, room, messages, leaveRoom, isDisable, setIsDisa
                         </div>
                     )}
 
+                    {/* Gif picker box */}
                     {showGifPicker && <GiphyBox gifSelect={handleGifSelect} setShowGifPicker={setShowGifPicker} />}
 
                     <div className='input-box'>
@@ -224,6 +230,7 @@ const ChatBox = ({ user, socket, room, messages, leaveRoom, isDisable, setIsDisa
                 </div>
 
             </div>
+
             {/* Image viewer */}
             {scaleImage && <div className='img-view'>
                 <img src={scaleImage} alt="image" />

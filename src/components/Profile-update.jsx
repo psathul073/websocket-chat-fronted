@@ -14,6 +14,7 @@ const ProfileUpdate = ({ setShowProfileUpdate, userData }) => {
     const profileRef = useRef(null);
     const navigate = useNavigate();
 
+    //  Handle image pick.
     const handleImageChange = (e) => {
         const max_file_size = 1 * 1024 * 1024; // 1Mb in bytes.
         const selectedImg = e.target.files[0];
@@ -27,6 +28,7 @@ const ProfileUpdate = ({ setShowProfileUpdate, userData }) => {
         setAvatar(objURL);
     };
 
+    // For profile update.
     const onSubmit = async (data) => {
 
         if (!avatar && !data.username) return;
@@ -47,7 +49,7 @@ const ProfileUpdate = ({ setShowProfileUpdate, userData }) => {
         };
     };
 
-    // Revoke url.
+    // Revoke url for solve memory leaks.
     useEffect(() => {
         return () => {
             if (avatar) {
@@ -72,10 +74,13 @@ const ProfileUpdate = ({ setShowProfileUpdate, userData }) => {
     return (
         <div className="profile-backdrop">
 
+            {/* Profile update container */}
             <div id="profile-update" ref={profileRef}>
+                {/* Model header */}
                 <h3>Profile update</h3>
                 <button className="close-btn" onClick={() => setShowProfileUpdate(false)}> <Icon name={'X'} /> </button>
-
+           
+                {/* Update form */}
                 <form onSubmit={handleSubmit(onSubmit)}>
 
                     <div className="img-container">
@@ -89,6 +94,8 @@ const ProfileUpdate = ({ setShowProfileUpdate, userData }) => {
                     </div>
 
                     <input className="username" placeholder="Enter a username" maxLength={10} {...register('username')} ></input>
+
+                    {/* For error message */}
 
                     <p>{msg}</p>
 

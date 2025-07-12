@@ -11,7 +11,6 @@ const Content = ({ user, socket, room, setRoom, err, setErr, privateRoom, setPri
     const [joinPwd, setJoinPwd] = useState("");
 
 
-    
     // Handle room create.
     const handleCreate = () => {
         if (connection) {
@@ -28,8 +27,7 @@ const Content = ({ user, socket, room, setRoom, err, setErr, privateRoom, setPri
             setJoinPwd("")
         }
     };
-
-    // Room close.
+    // Handle room close.
     const leaveRoom = () => {
         setMessages([]);
         setCreateInput("");
@@ -42,14 +40,17 @@ const Content = ({ user, socket, room, setRoom, err, setErr, privateRoom, setPri
 
     return (
         <>
-            {/* Contents */}
+            {/* Room create and join container */}
             {!room &&
                 <div id="content-container">
+                    {/* Hero section */}
                     <div className="person-img">
                         <h1>Welcome, {user?.username} </h1>
                         <img src="./person.webp" alt="person-image" loading="lazy" />
 
                     </div>
+
+                    {/* Room create and join section */}
                     <div className="jc-box">
                         <div className="create-room">
                             <h3>Create Room</h3>
@@ -79,11 +80,14 @@ const Content = ({ user, socket, room, setRoom, err, setErr, privateRoom, setPri
                             <button className="join-btn" onClick={handleJoin}>Join Room</button>
                         </div>
                     </div>
-                </div>}
+
+                </div>
+            }
 
             {/* chat container */}
             {room && <ChatBox user={user} socket={socket} room={room} messages={messages} leaveRoom={leaveRoom} isDisable={isDisable} setIsDisable={setIsDisable} connection={connection} />}
 
+            {/* Password model for private room */}
             {privateRoom && <PasswordModel socket={socket} roomName={privateRoom} setRoomName={setPrivateRoom} err={err} setErr={setErr} />}
 
         </>

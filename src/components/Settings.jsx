@@ -19,13 +19,15 @@ const Settings = ({ setShowSettings, signOut, setIsConfirm }) => {
   }, [])
 
 
-
   return (
     <div className='stg-backdrop'>
+      {/* Settings model */}
       <div id="settings-container" ref={settingsRef}>
+
         <header>
-          <h3>Settings</h3> <button className="close-btn" onClick={() => setShowSettings(false)}><Icon name={'X'}/> </button>
+          <h3>Settings</h3> <button className="close-btn" onClick={() => setShowSettings(false)}><Icon name={'X'} /> </button>
         </header>
+        {/* Options */}
         <div className="stg-option">
           Theme
           <ThemeDropdown />
@@ -39,6 +41,7 @@ const Settings = ({ setShowSettings, signOut, setIsConfirm }) => {
           <button className='logout-btn' onClick={signOut}>Logout<span className='loader0'></span></button>
         </div>
 
+        {/* Extra links */}
         <div className='pp-tc'>
           <Link>Privacy Policy</Link>
           .

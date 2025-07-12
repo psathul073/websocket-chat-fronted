@@ -8,7 +8,10 @@ const PasswordModel = ({ socket, roomName, setRoomName, err, setErr }) => {
 
 
     return (
+
         <div id="pwd-backdrop">
+
+            {/* Password model container */}
 
             <div className="pwd-modal">
                 <h2>🔒 Enter Password for {roomName}</h2>
@@ -29,8 +32,9 @@ const PasswordModel = ({ socket, roomName, setRoomName, err, setErr }) => {
                 </div>
 
             </div>
+
         </div>
     )
-}
+};
 
 export default PasswordModel

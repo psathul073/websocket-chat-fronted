@@ -3,6 +3,7 @@ import remarkGfm from "remark-gfm";
 import WaveFormPlayer from "./Waveform-player";
 
 const FormatText = ({ text, color, scaleImg }) => {
+    
     // If text is an image URL.
     if (/\.(jpeg|jpg|png|gif)(\?.*)?$/i.test(text)) {
         return (
@@ -13,7 +14,8 @@ const FormatText = ({ text, color, scaleImg }) => {
     if (/\.(webm|mp3|wav)(\?.*)?$/i.test(text)) {
         return <WaveFormPlayer src={text} color={color}/>
     }
-    // Otherwise, treat as Markdown
+
+    // Otherwise, treat as Markdown.
     return (
         <ReactMarkdown rehypePlugins={[remarkGfm]}
             components={{
@@ -31,5 +33,6 @@ const FormatText = ({ text, color, scaleImg }) => {
         </ReactMarkdown>
     )
 
-}
+};
+
 export default FormatText

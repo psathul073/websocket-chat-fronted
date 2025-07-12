@@ -1,9 +1,10 @@
 
-const ConfirmModel = ({ title, msg, loading, confirm, cancel ,type }) => {
+const ConfirmModel = ({ title, msg, loading, confirm, cancel,type }) => {
 
 
     return (
         <div className="confirm-backdrop">
+            {/* Reusable confirm model */}
             <div id="confirm-model">
                 <h2>{title}</h2>
                 <p>{msg}</p>
@@ -12,6 +13,7 @@ const ConfirmModel = ({ title, msg, loading, confirm, cancel ,type }) => {
                     <button disabled={loading} className="del-btn" onClick={confirm}>Delete {type} {loading && <span className="loader"></span>}</button>
                 </div>
             </div>
+
         </div>
     )
 }

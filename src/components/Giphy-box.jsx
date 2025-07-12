@@ -6,6 +6,7 @@ import { useDebounce } from '../Hooks/useDebounce';
 const gf = new GiphyFetch(import.meta.env.VITE_GIPHY_API_KEY);
 
 const GiphyBox = ({ gifSelect, setShowGifPicker }) => {
+  
     const [searchTerm, setSearchTerm] = useState("");
     const debouncedSearchTerm = useDebounce(searchTerm, 300); // add custom debounce for gif search.
     const gifBoxRef = useRef(null)
@@ -37,6 +38,7 @@ const GiphyBox = ({ gifSelect, setShowGifPicker }) => {
     }, []);
 
     return (
+        // Gif picker box.
         <div className='gif-picker' ref={gifBoxRef} >
             <input
                 className='gif-search'

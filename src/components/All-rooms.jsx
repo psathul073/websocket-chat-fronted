@@ -23,6 +23,7 @@ const AllRooms = ({
     room.name.toLowerCase().includes(searchTerm.trim().toLowerCase())
   );
 
+  // For room delete.
   const roomDelete = () => {
     if (connection) {
       setLoading(true);
@@ -36,6 +37,7 @@ const AllRooms = ({
 
   };
 
+  // For room delete cancel.
   const cancelDelete = () => {
     setRoom("");
     setIsConfirm(false);
@@ -43,8 +45,12 @@ const AllRooms = ({
 
   return (
     <>
+    
       <div id="rooms-container">
+
+        {/* Rooms container */}
         <div className="allRooms-model">
+        
           <h2 className="title">
             Available rooms : {filteredRooms?.length}
             <button
@@ -55,6 +61,7 @@ const AllRooms = ({
             </button>
           </h2>
 
+          {/* Rooms search box */}
           <div className="search-box">
             <input
               type="search"
@@ -69,6 +76,7 @@ const AllRooms = ({
             </button>
           </div>
 
+          {/* All rooms list */}
           <ul className="rooms-list">
             {filteredRooms.length > 0 ?
               filteredRooms?.map((room) => (
@@ -118,8 +126,10 @@ const AllRooms = ({
             }
           </ul>
         </div>
+
       </div>
 
+      {/* Room delete confirm model */}
       {isConfirm && (
         <ConfirmModel
           title={"Delete room"}
@@ -130,6 +140,7 @@ const AllRooms = ({
           cancel={cancelDelete}
         />
       )}
+
     </>
   );
 };

@@ -84,21 +84,25 @@ const Home = () => {
 
     if (!userData) return;
 
-    const WS_URL = import.meta.env.VITE_WS_URL;
+    const WS_URL = import.meta.env.VITE_WS_URL; // Backend URL.
     const ws = new WebSocket(WS_URL); // Connect to backend server.
 
+    // If websocket is connected.
     ws.onopen = () => { setIsConnected(true); setIsDisable(false); console.log("WebSocket connected"); }
 
+    // If data is received.
     ws.onmessage = (ev) => {
 
       // console.log('Raw message:', ev.data);
 
       const data = JSON.parse(ev.data);
 
+      // If receive rooms update.
       if (data.type === 'rooms-updated') {
         setRooms(data.rooms); // Show room list
       }
 
+      // Room create.
       if (data.type === 'create-success') {
 
         setRoom(data?.roomName);
@@ -108,6 +112,7 @@ const Home = () => {
 
       }
 
+      // Room join.
       if (data.type === 'join-success') {
 
         setRoom(data?.roomName);
@@ -117,16 +122,21 @@ const Home = () => {
 
       }
 
+      // Errors.
       if (data.type === 'error') setError(data);
 
+      // Messages.
       if (data.type === 'message' && data.message.roomName === room) {
         setMessages((prev) => [...prev, data.message]); // Add new message
       }
 
+      // Room delete.
       if (data.type === 'message-deleted') {
         setMessages((prev) => prev.filter((msg) => msg.id !== data.id));
         setIsDisable(false);
       }
+
+      // User delete.
       if (data.type === 'delete-success') {
         handleSignOut(); // Firebase Auth session is cleared and redirect to signin...
         ws.close();  // Kill socket
@@ -134,11 +144,12 @@ const Home = () => {
 
     };
 
+    // If websocket is disconnected.
     ws.onclose = () => { setIsConnected(false); setIsDisable(true); console.log("❌ Disconnected from server"); }
 
     setSocket(ws);
 
-    return () => ws.close();
+    return () => ws.close(); // for cleanup...
 
   }, [userData, room]);
 
@@ -153,8 +164,8 @@ const Home = () => {
         <p>Available Rooms 🡢</p>
       </button>}
 
-      {/* Avatar & profile*/}
-      <button className="avatar" style={{ borderColor: isConnected ? '#15803d' : '#be123c'}} onClick={() => setShowProfilePop(true)}>
+      {/* User avatar & profile*/}
+      <button className="avatar" style={{ borderColor: isConnected ? '#15803d' : '#be123c' }} onClick={() => setShowProfilePop(true)}>
         <img src={userData?.avatar ? userData.avatar : "/avatar.webp"} alt="avatar" loading="lazy" />
       </button>
 
@@ -188,7 +199,7 @@ const Home = () => {
 
       </aside>
 
-      {/* Content */}
+      {/* main content */}
       <Content user={userData} socket={socket} room={room} setRoom={setRoom} err={error} setErr={setError} privateRoom={privateRoom} setPrivateRoom={setPrivateRoom} messages={messages} setMessages={setMessages} isDisable={isDisable} setIsDisable={setIsDisable} connection={isConnected} />
 
       {/* Profile popup model */}
@@ -203,7 +214,7 @@ const Home = () => {
       {/* Show all rooms model */}
       {showAllRooms && <AllRooms setShowAllRooms={setShowAllRooms} rooms={rooms} setRooms={setRooms} uid={userData?.uid} socket={socket} setPrivateRoom={setPrivateRoom} setRoom={setRoom} connection={isConnected} />}
 
-      {/* Confirm model */}
+      {/* Confirm model for account removal */}
       {isConfirm && <ConfirmModel
         title={'Account Removal'}
         msg={'Are you sure you want to delete your account? This will permanently remove your account and all data.'}
@@ -215,7 +226,6 @@ const Home = () => {
 
       {/* Overlay */}
       {isOpen && <div className="overlay" onClick={() => setIsOpen(false)} ></div>}
-
 
     </section>
 
