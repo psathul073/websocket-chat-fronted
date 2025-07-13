@@ -7,6 +7,7 @@ import imageUpload from '../apis/image-upload'
 import { deleteMessage } from '../utils/room-manage'
 import audioUpload from '../apis/audio-upload'
 import SlicedText from './Sliced-text'
+import { Fullscreen } from '../utils/fullscreen'
 
 
 const ChatBox = ({ user, socket, room, messages, leaveRoom, isDisable, setIsDisable, connection }) => {
@@ -131,6 +132,11 @@ const ChatBox = ({ user, socket, room, messages, leaveRoom, isDisable, setIsDisa
         }
     };
 
+    // Show fullscreen by default.
+    useEffect(() => {
+        const elem = document.querySelector('.chat-backdrop');
+        Fullscreen(elem); 
+    }, []);
 
     // Adjust text area height based on msg length,
     useEffect(() => {

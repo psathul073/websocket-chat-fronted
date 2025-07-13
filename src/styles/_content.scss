@@ -166,7 +166,7 @@
         width: 100%;
         @include flex();
         gap: 30px;
-        padding: 10px;
+        padding: 15px 10px;
         // Join and create.
         @include room();
     }
